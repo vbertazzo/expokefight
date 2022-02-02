@@ -10,6 +10,10 @@ import Config
 config :expokefight,
   ecto_repos: [Expokefight.Repo]
 
+config :expokefight, Expokefight.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id]
+
 # Configures the endpoint
 config :expokefight, ExpokefightWeb.Endpoint,
   url: [host: "localhost"],
