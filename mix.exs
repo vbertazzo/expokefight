@@ -37,6 +37,7 @@ defmodule Expokefight.MixProject do
       {:esbuild, "~> 0.3", runtime: Mix.env() == :dev},
       {:ex_machina, "~> 2.7.0"},
       {:gettext, "~> 0.18"},
+      {:hackney, "~> 1.17"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:phoenix, "~> 1.6.6"},
@@ -46,6 +47,10 @@ defmodule Expokefight.MixProject do
       {:swoosh, "~> 1.3"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
+      {:tesla, "~> 1.4"},
+
+      # TEST
+      {:bypass, "~> 2.1", only: :test},
 
       # DEV TEST
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
