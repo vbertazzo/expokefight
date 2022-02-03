@@ -26,5 +26,8 @@ config :expokefight, Expokefight.Mailer, adapter: Swoosh.Adapters.Test
 # Print only warnings and errors during test
 config :logger, level: :warn
 
+# Enable bypass debug log
+config :bypass, enable_debug_log: true
+
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
