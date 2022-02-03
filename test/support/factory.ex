@@ -19,4 +19,17 @@ defmodule Expokefight.Factory do
       type: "water"
     }
   end
+
+  def battle_params_factory do
+    %{
+      "victorious" => build(:pokemon_params),
+      "defeated" =>
+        build(:pokemon_params, %{
+          "name" => "Pikachu",
+          "image" =>
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+          "type" => "electric"
+        })
+    }
+  end
 end
