@@ -35,6 +35,7 @@ defmodule Expokefight.MixProject do
     [
       {:ecto_sql, "~> 3.6"},
       {:esbuild, "~> 0.3", runtime: Mix.env() == :dev},
+      {:ex_machina, "~> 2.7.0"},
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
