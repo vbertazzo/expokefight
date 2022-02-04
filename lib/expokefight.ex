@@ -1,9 +1,5 @@
 defmodule Expokefight do
-  @moduledoc """
-  Expokefight keeps the contexts that define your domain
-  and business logic.
+  alias Expokefight.Battles.Create, as: BattleCreate
 
-  Contexts are also responsible for managing your data, regardless
-  if it comes from the database, an external API or others.
-  """
+  defdelegate create_battle(params), to: BattleCreate, as: :call
 end
