@@ -3,10 +3,8 @@ defmodule Expokefight.Battles.Create do
   alias Expokefight.Battles.TransformData
 
   def call(params) do
-    pokemon1 = Map.get(params, "pokemon1")
-    pokemon2 = Map.get(params, "pokemon2")
-
-    with {:ok, pokemons} <- client().get_pokemons([pokemon1, pokemon2]),
+    with {:ok, normalized_params} <- normalize_params(params),
+         {:ok, pokemons} <- client().get_pokemons(normalized_params),
          pokemons <- TransformData.call(pokemons),
          pokemons <- simulate_battle(pokemons),
          changeset <- Battle.changeset(pokemons),
@@ -17,6 +15,15 @@ defmodule Expokefight.Battles.Create do
       {:error, result} -> {:error, Error.build(:bad_request, result)}
     end
   end
+
+  defp normalize_params(%{"pokemon1" => pokemon1, "pokemon2" => pokemon2}) do
+    pokemon1 = String.downcase(pokemon1)
+    pokemon2 = String.downcase(pokemon2)
+
+    {:ok, [pokemon1, pokemon2]}
+  end
+
+  defp normalize_params(_params), do: {:error, Error.build(:bad_request, "Invalid parameters")}
 
   defp simulate_battle(pokemons) do
     [victorious, defeated] = Enum.shuffle(pokemons)
