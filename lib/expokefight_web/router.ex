@@ -7,6 +7,8 @@ defmodule ExpokefightWeb.Router do
 
   scope "/api", ExpokefightWeb do
     pipe_through :api
+
+    resources "/battles/", BattlesController, except: [:new, :edit, :update, :delete]
   end
 
   # Enables LiveDashboard only for development
