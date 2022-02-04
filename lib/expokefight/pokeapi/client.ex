@@ -1,17 +1,40 @@
 defmodule Expokefight.Pokeapi.Client do
   use Tesla
   alias Expokefight.Error
+  alias Expokefight.Pokeapi.Behaviour
   alias Expokefight.Pokeapi.Response
   alias Tesla.Env
+
+  @behaviour Behaviour
 
   @base_url "https://pokeapi.co/api/v2/pokemon/"
   plug Tesla.Middleware.JSON
 
-  def get_pokemon(url \\ @base_url, pokemon) do
+  def get_pokemons(url \\ @base_url, pokemons) do
+    pokemons
+    |> Enum.map(fn pokemon -> get_pokemon(url, pokemon) end)
+    |> check_for_errors()
+    |> parse_pokemon()
+  end
+
+  defp get_pokemon(url, pokemon) do
     "#{url}#{pokemon}"
     |> get()
     |> handle_get()
   end
+
+  defp check_for_errors(pokemons) do
+    pokemons
+    |> Enum.find({:ok, pokemons}, fn {status, _reason} -> status == :error end)
+  end
+
+  defp parse_pokemon({:ok, pokemons}) do
+    pokemons = Enum.map(pokemons, fn {:ok, %Response{} = response} -> response end)
+
+    {:ok, pokemons}
+  end
+
+  defp parse_pokemon({:error, _reason} = error), do: error
 
   defp handle_get({:ok, %Env{status: 404}}) do
     {:error, Error.build(:not_found, "Pokemon not found")}

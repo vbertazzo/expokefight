@@ -4,55 +4,73 @@ defmodule Expokefight.Pokeapi.ClientTest do
   alias Expokefight.Pokeapi.{Client, Response}
   alias Plug.Conn
 
-  describe "get_pokemon/2" do
+  describe "get_pokemons/2" do
     setup do
       bypass = Bypass.open()
 
       {:ok, bypass: bypass}
     end
 
-    test "returns the pokemon when its name is valid", %{bypass: bypass} do
-      pokemon = "ditto"
+    test "return the pokemons when the names are valid", %{bypass: bypass} do
+      pokemon1 = "ditto"
+      pokemon2 = "ditto"
+      pokemons = [pokemon1, pokemon2]
 
       url = endpoint_url(bypass.port)
 
-      Bypass.expect(bypass, "GET", "#{pokemon}", fn conn ->
+      Bypass.expect(bypass, "GET", "#{pokemon1}", fn conn ->
         conn
         |> Conn.put_resp_header("content-type", "application/json")
         |> Conn.resp(200, body())
       end)
 
-      response = Client.get_pokemon(url, pokemon)
+      Bypass.expect(bypass, "GET", "#{pokemon2}", fn conn ->
+        conn
+        |> Conn.put_resp_header("content-type", "application/json")
+        |> Conn.resp(200, body())
+      end)
 
-      assert {:ok, %Response{name: "ditto"}} = response
+      response = Client.get_pokemons(url, pokemons)
+
+      assert {:ok, [%Response{name: "ditto"}, %Response{name: "ditto"}]} = response
     end
 
-    test "returns an error when the pokemon name was not found", %{bypass: bypass} do
-      pokemon = "elixirditto"
+    test "returns an error when a pokemon name was not found", %{bypass: bypass} do
+      pokemon1 = "ditto"
+      pokemon2 = "elixirditto"
+      pokemons = [pokemon1, pokemon2]
 
       url = endpoint_url(bypass.port)
 
-      Bypass.expect(bypass, "GET", "#{pokemon}", fn conn ->
+      Bypass.expect(bypass, "GET", "#{pokemon1}", fn conn ->
+        conn
+        |> Conn.put_resp_header("content-type", "application/json")
+        |> Conn.resp(200, body())
+      end)
+
+      Bypass.expect(bypass, "GET", "#{pokemon2}", fn conn ->
         Conn.resp(conn, 404, "")
       end)
 
-      response = Client.get_pokemon(url, pokemon)
+      response = Client.get_pokemons(url, pokemons)
 
-      expected = {:error, %Expokefight.Error{result: "Pokemon not found", status: :not_found}}
+      expected = {:error, %Error{result: "Pokemon not found", status: :not_found}}
 
       assert response == expected
     end
 
     test "returns an error when there is a generic error", %{bypass: bypass} do
-      pokemon = "ditto"
+      pokemon1 = "ditto"
+      pokemon2 = "ditto"
+      pokemons = [pokemon1, pokemon2]
 
       url = endpoint_url(bypass.port)
 
       Bypass.down(bypass)
 
-      response = Client.get_pokemon(url, pokemon)
+      response = Client.get_pokemons(url, pokemons)
 
-      expected = {:error, %Expokefight.Error{result: :econnrefused, status: :bad_request}}
+      expected = {:error, %Error{result: :econnrefused, status: :bad_request}}
 
       assert response == expected
     end
