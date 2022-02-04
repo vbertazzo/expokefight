@@ -6,6 +6,8 @@ defmodule Expokefight.Battle do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
+  @derive {Jason.Encoder, only: [:id, :victorious, :defeated]}
+
   schema "battles" do
     belongs_to :victorious, Pokemon, foreign_key: :victorious_id
     belongs_to :defeated, Pokemon, foreign_key: :defeated_id
