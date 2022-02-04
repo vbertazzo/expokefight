@@ -30,6 +30,8 @@ config :expokefight, ExpokefightWeb.Endpoint,
 # at the `config/runtime.exs`.
 config :expokefight, Expokefight.Mailer, adapter: Swoosh.Adapters.Local
 
+config :expokefight, Expokefight.Battles.Create, pokeapi_adapter: Expokefight.Pokeapi.Client
+
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
 

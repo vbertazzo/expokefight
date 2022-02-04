@@ -51,6 +51,7 @@ defmodule Expokefight.MixProject do
 
       # TEST
       {:bypass, "~> 2.1", only: :test},
+      {:mox, "~> 1.0", only: :test},
 
       # DEV TEST
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
