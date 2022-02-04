@@ -1,8 +1,19 @@
 defmodule Expokefight.Battles.TransformData do
+  alias Expokefight.Error
+
   def call(pokemons) do
     pokemons
     |> Enum.map(&transform_pokemon_data/1)
   end
+
+  def normalize_params(%{"pokemon1" => pokemon1, "pokemon2" => pokemon2}) do
+    pokemon1 = String.downcase(pokemon1)
+    pokemon2 = String.downcase(pokemon2)
+
+    {:ok, [pokemon1, pokemon2]}
+  end
+
+  def normalize_params(_params), do: {:error, Error.build(:bad_request, "Invalid parameters")}
 
   defp transform_pokemon_data(pokemon) do
     pokemon
