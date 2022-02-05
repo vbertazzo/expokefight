@@ -84,4 +84,31 @@ defmodule ExpokefightWeb.BattlesViewTest do
              ]
            } = response
   end
+
+  test "renders battle.json" do
+    battle = build(:battle)
+
+    response = render(BattlesView, "battle.json", battle: battle)
+
+    assert %{
+             battle: %{
+               id: _battle_id,
+               victorious: %{
+                 id: _pokemon_id1,
+                 image:
+                   "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+                 name: "charmander",
+                 type: "fire"
+               },
+               date: ~N[2022-02-04 20:08:02],
+               defeatead: %{
+                 id: _pokemon_id2,
+                 image:
+                   "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+                 name: "pikachu",
+                 type: "electric"
+               }
+             }
+           } = response
+  end
 end
