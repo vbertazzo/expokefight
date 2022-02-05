@@ -1,8 +1,10 @@
 defmodule ExpokefightWeb.Router do
   use ExpokefightWeb, :router
+  alias ExpokefightWeb.Plugs.UUIDChecker
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug UUIDChecker
   end
 
   scope "/api", ExpokefightWeb do
