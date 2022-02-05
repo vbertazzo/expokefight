@@ -14,7 +14,7 @@ defmodule ExpokefightWeb.BattlesController do
   end
 
   def index(conn, _params) do
-    with {:ok, battles} <- Expokefight.get_all() do
+    with {:ok, battles} <- Expokefight.get_all_battles() do
       conn
       |> put_status(:ok)
       |> render("index.json", battles: battles)
