@@ -119,5 +119,65 @@ defmodule Expokefight.BattlesControllerTest do
                ]
              } = response
     end
+
+    test "returns the battle when id is found", %{conn: conn} do
+      id = "ebd41cf6-1fb4-4c98-90be-76882b43f0a9"
+
+      :battle
+      |> build(id: id)
+      |> insert()
+
+      response =
+        conn
+        |> get(Routes.battles_path(conn, :show, id))
+        |> json_response(:ok)
+
+      assert %{
+               "battle" => %{
+                 "date" => "2022-02-04T20:08:02",
+                 "defeatead" => %{
+                   "id" => _pokemon_id1,
+                   "image" =>
+                     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+                   "name" => "pikachu",
+                   "type" => "electric"
+                 },
+                 "id" => ^id,
+                 "victorious" => %{
+                   "id" => _pokemon_id2,
+                   "image" =>
+                     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+                   "name" => "charmander",
+                   "type" => "fire"
+                 }
+               }
+             } = response
+    end
+
+    test "returns an error when id is not found", %{conn: conn} do
+      id = "ebd41cf6-1fb4-4c98-90be-76882b43f0a0"
+
+      response =
+        conn
+        |> get(Routes.battles_path(conn, :show, id))
+        |> json_response(:not_found)
+
+      expected = %{"message" => "Battle not found"}
+
+      assert response == expected
+    end
+
+    test "returns an error when id format is invalid", %{conn: conn} do
+      id = "kiwi"
+
+      response =
+        conn
+        |> get(Routes.battles_path(conn, :show, id))
+        |> json_response(:bad_request)
+
+      expected = %{"message" => "Invalid UUID"}
+
+      assert response == expected
+    end
   end
 end
