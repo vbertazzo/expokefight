@@ -14,4 +14,6 @@ defmodule ExpokefightWeb.BattlesView do
       }
     }
   end
+
+  def render("index.json", %{battles: battles}), do: %{battles: battles}
 end
