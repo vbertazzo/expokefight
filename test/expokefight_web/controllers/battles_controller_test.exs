@@ -65,4 +65,59 @@ defmodule Expokefight.BattlesControllerTest do
       assert response == expected
     end
   end
+
+  describe "get/2" do
+    setup %{conn: conn} do
+      insert(:battle)
+      insert(:battle)
+
+      {:ok, conn: conn}
+    end
+
+    test "returns all battles", %{conn: conn} do
+      response =
+        conn
+        |> get(Routes.battles_path(conn, :index))
+        |> json_response(:ok)
+
+      assert %{
+               "battles" => [
+                 %{
+                   "defeated" => %{
+                     "image" =>
+                       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+                     "name" => "pikachu",
+                     "type" => "electric",
+                     "id" => _pokemon_id1
+                   },
+                   "victorious" => %{
+                     "image" =>
+                       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+                     "name" => "charmander",
+                     "type" => "fire",
+                     "id" => _pokemon_id2
+                   },
+                   "id" => _battle_id1
+                 },
+                 %{
+                   "defeated" => %{
+                     "id" => _pokemon_id3,
+                     "image" =>
+                       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+                     "name" => "pikachu",
+                     "type" => "electric"
+                   },
+                   "id" => _battle_id2,
+                   "victorious" => %{
+                     "id" => _pokemon_id4,
+                     "image" =>
+                       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+                     "name" => "charmander",
+                     "type" => "fire"
+                   }
+                 }
+               ]
+             } = response
+    end
+  end
 end
