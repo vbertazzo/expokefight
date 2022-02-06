@@ -34,7 +34,9 @@ defmodule Expokefight.Pokeapi.Client do
     {:ok, pokemons}
   end
 
-  defp parse_pokemon({:error, _reason} = error), do: error
+  defp parse_pokemon({:error, _reason} = error) do
+    error
+  end
 
   defp handle_get({:ok, %Env{status: 404}}) do
     {:error, Error.build(:not_found, "Pokemon not found")}
