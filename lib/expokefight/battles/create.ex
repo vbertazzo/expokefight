@@ -12,7 +12,6 @@ defmodule Expokefight.Battles.Create do
       battle
     else
       {:error, %Error{}} = error -> error
-      {:error, result} -> {:error, Error.build(:bad_request, result)}
     end
   end
 
