@@ -1,4 +1,8 @@
 defmodule ExpokefightWeb.Plugs.UUIDChecker do
+  @moduledoc """
+  Plug for UUID validation
+  """
+
   import Plug.Conn
   alias Ecto.UUID
   alias Plug.Conn

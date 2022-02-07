@@ -1,4 +1,6 @@
 defmodule Expokefight.Factory do
+  @moduledoc false
+
   use ExMachina.Ecto, repo: Expokefight.Repo
   alias Ecto.UUID
   alias Expokefight.Pokeapi.Response

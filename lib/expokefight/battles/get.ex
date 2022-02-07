@@ -7,7 +7,7 @@ defmodule Expokefight.Battles.Get do
   @doc """
   Get all battles
   """
-  def all() do
+  def all do
     battles =
       Battle
       |> Repo.all()

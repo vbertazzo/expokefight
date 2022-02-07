@@ -65,8 +65,7 @@ defmodule Expokefight.Battles.TransformData do
     types =
       pokemon
       |> Map.get(:types)
-      |> Enum.map(fn type -> type["type"]["name"] end)
-      |> Enum.join("/")
+      |> Enum.map_join("/", fn type -> type["type"]["name"] end)
 
     pokemon
     |> Map.put(:type, types)
