@@ -1,4 +1,8 @@
 defmodule Expokefight do
+  @moduledoc """
+  Expokefight is a JSON API that simulates a pokemon battle for Brainn.co's backend challenge.
+  """
+
   alias Expokefight.Battles.Create, as: BattleCreate
   alias Expokefight.Battles.Get, as: BattleGet
 

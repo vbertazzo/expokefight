@@ -1,4 +1,7 @@
 defmodule Expokefight.Pokeapi.Response do
+  @moduledoc """
+  Struct for PokeAPI's parsed response
+  """
   @keys [:name, :sprites, :types]
 
   @enforce_keys @keys

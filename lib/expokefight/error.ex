@@ -1,4 +1,8 @@
 defmodule Expokefight.Error do
+  @moduledoc """
+  Struct for an error
+  """
+
   @keys [:status, :result]
 
   @enforce_keys @keys

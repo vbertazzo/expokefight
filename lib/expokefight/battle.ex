@@ -1,4 +1,8 @@
 defmodule Expokefight.Battle do
+  @moduledoc """
+  Struct for a pokemon battle
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
   alias Expokefight.Pokemon

@@ -1,4 +1,8 @@
 defmodule Expokefight.Pokemon do
+  @moduledoc """
+  Struct for a pokemon
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
 
