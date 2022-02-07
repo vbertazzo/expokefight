@@ -1,5 +1,11 @@
 defmodule Expokefight.Pokeapi.Behaviour do
+  @moduledoc """
+  Behaviour for PokeAPI Client
+  """
   alias Expokefight.Error
 
-  @callback get_pokemons(String.t()) :: {:ok, map()} | {:error, Error.t()}
+  @doc """
+  Get pokemons from PokeAPI
+  """
+  @callback get_pokemons(list(String.t())) :: {:ok, list} | {:error, Error.t()}
 end

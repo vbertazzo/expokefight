@@ -1,15 +1,20 @@
 defmodule Expokefight.Pokeapi.Client do
+  @moduledoc """
+  Client for the PokeAPI
+  """
+
+  @behaviour Expokefight.Pokeapi.Behaviour
+
   use Tesla
   alias Expokefight.Error
-  alias Expokefight.Pokeapi.Behaviour
   alias Expokefight.Pokeapi.Response
   alias Tesla.Env
 
-  @behaviour Behaviour
-
   @base_url "https://pokeapi.co/api/v2/pokemon/"
+
   plug Tesla.Middleware.JSON
 
+  @impl Expokefight.Pokeapi.Behaviour
   def get_pokemons(url \\ @base_url, pokemons) do
     pokemons
     |> Enum.map(fn pokemon -> get_pokemon(url, pokemon) end)
