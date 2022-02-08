@@ -2,7 +2,7 @@ defmodule ExpokefightWeb.BattlesViewTest do
   use ExpokefightWeb.ConnCase, async: true
   import Expokefight.Factory
   import Phoenix.View
-  alias Expokefight.{Battle, Pokemon}
+  alias Expokefight.Pokemon
   alias ExpokefightWeb.BattlesView
 
   test "renders create.json" do
