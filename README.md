@@ -139,6 +139,7 @@ Body:
 	"battles": [
     {
 			"id": "89bf78a2-6500-406a-963b-10de75f7a91f",
+			"date": "2022-02-08T17:21:38",
 			"victorious": {
 				"id": "d65dcb78-def2-464d-8c2f-90624f4a7949",
 				"name": "gengar",
@@ -154,6 +155,7 @@ Body:
 		},
 		{
 			"id": "d19803da-24df-440b-8b6c-075eb87ff20c",
+			"date": "2022-02-08T17:37:53",
 			"victorious": {
 				"id": "adbf13e3-4e78-4c0b-ace9-851bf9a5913d",
 				"name": "pikachu",
