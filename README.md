@@ -72,7 +72,7 @@ Body:
 {
 	"battle": {
 		"date": "2022-02-08T17:21:38",
-		"defeatead": {
+		"defeated": {
 			"id": "1c1b01e1-898d-4cd5-9d84-9b7679ca7ca5",
 			"name": "ditto",
 			"image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png",
@@ -105,7 +105,7 @@ Body:
 {
 	"battle": {
 		"date": "2022-02-08T17:21:38",
-		"defeatead": {
+		"defeated": {
 			"id": "1c1b01e1-898d-4cd5-9d84-9b7679ca7ca5",
 			"name": "ditto",
 			"image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png",
