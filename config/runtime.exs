@@ -65,6 +65,11 @@ if config_env() == :prod do
   # Then you can assemble a release by calling `mix release`.
   # See `mix help release` for more information.
 
+  config :expokefight, ExpokefightWeb.Endpoint,
+    server: true,
+    http: [port: {:system, "PORT"}],
+    url: [host: System.get_env("APP_NAME") <> ".gigalixirapp.com", port: 443]
+
   # ## Configuring the mailer
   #
   # In production you need to configure the mailer to use a different adapter.
