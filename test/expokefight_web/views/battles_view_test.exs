@@ -21,7 +21,7 @@ defmodule ExpokefightWeb.BattlesViewTest do
                  type: "fire"
                },
                date: ~N[2022-02-04 20:08:02],
-               defeatead: %{
+               defeated: %{
                  id: _pokemon_id2,
                  image:
                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
@@ -39,7 +39,8 @@ defmodule ExpokefightWeb.BattlesViewTest do
 
     assert %{
              battles: [
-               %Battle{
+               %{
+                 date: ~N[2022-02-04 20:08:02],
                  defeated: %Pokemon{
                    id: _pokemon_id1,
                    image:
@@ -47,66 +48,59 @@ defmodule ExpokefightWeb.BattlesViewTest do
                    name: "pikachu",
                    type: "electric"
                  },
-                 defeated_id: _pokemon_id2,
                  id: _battle_id1,
-                 inserted_at: ~N[2022-02-04 20:08:02],
-                 updated_at: ~N[2022-02-04 20:08:02],
                  victorious: %Pokemon{
-                   id: _pokemon_id3,
+                   id: _pokemon_id2,
                    image:
                      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
                    name: "charmander",
                    type: "fire"
-                 },
-                 victorious_id: _pokemon_id4
+                 }
                },
-               %Battle{
+               %{
+                 date: ~N[2022-02-04 20:08:02],
                  defeated: %Pokemon{
-                   id: _pokemon_id5,
+                   id: _pokemon_id3,
                    image:
                      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
                    name: "pikachu",
                    type: "electric"
                  },
-                 defeated_id: _pokemon_id6,
                  id: _battle_id2,
-                 inserted_at: ~N[2022-02-04 20:08:02],
-                 updated_at: ~N[2022-02-04 20:08:02],
                  victorious: %Pokemon{
-                   id: _pokemon_id7,
+                   id: _pokemon_id4,
                    image:
                      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
                    name: "charmander",
                    type: "fire"
-                 },
-                 victorious_id: _pokemon_id8
+                 }
                }
              ]
            } = response
   end
 
-  test "renders battle.json" do
+  test "renders show.json" do
     battle = build(:battle)
 
-    response = render(BattlesView, "battle.json", battle: battle)
+    response = render(BattlesView, "show.json", battle: battle)
 
     assert %{
              battle: %{
-               id: _battle_id,
-               victorious: %{
-                 id: _pokemon_id1,
-                 image:
-                   "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
-                 name: "charmander",
-                 type: "fire"
-               },
                date: ~N[2022-02-04 20:08:02],
-               defeatead: %{
-                 id: _pokemon_id2,
+               defeated: %Pokemon{
+                 id: _pokemon_id1,
                  image:
                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
                  name: "pikachu",
                  type: "electric"
+               },
+               id: _battle_id,
+               victorious: %Pokemon{
+                 id: _pokemon_id2,
+                 image:
+                   "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+                 name: "charmander",
+                 type: "fire"
                }
              }
            } = response

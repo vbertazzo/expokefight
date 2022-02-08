@@ -20,7 +20,7 @@ defmodule Expokefight.BattlesControllerTest do
       assert %{
                "battle" => %{
                  "date" => _date,
-                 "defeatead" => %{
+                 "defeated" => %{
                    "id" => _pokemon_id1,
                    "image" =>
                      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
@@ -97,7 +97,8 @@ defmodule Expokefight.BattlesControllerTest do
                      "type" => "fire",
                      "id" => _pokemon_id2
                    },
-                   "id" => _battle_id1
+                   "id" => _battle_id1,
+                   "date" => "2022-02-04T20:08:02"
                  },
                  %{
                    "defeated" => %{
@@ -114,7 +115,8 @@ defmodule Expokefight.BattlesControllerTest do
                        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
                      "name" => "charmander",
                      "type" => "fire"
-                   }
+                   },
+                   "date" => "2022-02-04T20:08:02"
                  }
                ]
              } = response
@@ -135,7 +137,7 @@ defmodule Expokefight.BattlesControllerTest do
       assert %{
                "battle" => %{
                  "date" => "2022-02-04T20:08:02",
-                 "defeatead" => %{
+                 "defeated" => %{
                    "id" => _pokemon_id1,
                    "image" =>
                      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
