@@ -71,10 +71,11 @@ jobs:
         with:
           python-version: 3.8.1
 
-      - uses: mhanberg/gigalixir-action@v0.4.0
+      - uses: mhanberg/gigalixir-action@v0.6.1
         with:
           GIGALIXIR_USERNAME: ${{ secrets.GIGALIXIR_USERNAME }}
           GIGALIXIR_PASSWORD: ${{ secrets.GIGALIXIR_PASSWORD }}
           GIGALIXIR_APP: nutty-hollow-waterdogs
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           MIGRATIONS: false # defaults to true
+          GIGALIXIR_CLEAN: true # defaults to false
