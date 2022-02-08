@@ -78,4 +78,3 @@ jobs:
           GIGALIXIR_APP: nutty-hollow-waterdogs
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           MIGRATIONS: false # defaults to true
-          GIGALIXIR_CLEAN: true
