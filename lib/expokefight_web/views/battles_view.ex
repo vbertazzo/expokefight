@@ -17,7 +17,7 @@ defmodule ExpokefightWeb.BattlesView do
     %{
       id: battle.id,
       victorious: battle.victorious,
-      defeatead: battle.defeated,
+      defeated: battle.defeated,
       date: battle.inserted_at
     }
   end
