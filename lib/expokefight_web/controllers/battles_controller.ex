@@ -25,7 +25,7 @@ defmodule ExpokefightWeb.BattlesController do
     with {:ok, %Battle{} = battle} <- Expokefight.get_battle_by_id(id) do
       conn
       |> put_status(:ok)
-      |> render("battle.json", battle: battle)
+      |> render("show.json", battle: battle)
     end
   end
 end
